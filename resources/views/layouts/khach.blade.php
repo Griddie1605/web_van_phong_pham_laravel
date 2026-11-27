@@ -43,9 +43,31 @@
                         </span>
                     </a>
 
-                    <a href="#" class="btn btn-primary">
-                        <i class="bi bi-box-arrow-in-right me-1"></i>Đăng nhập
-                    </a>
+                    @auth
+                        <div class="dropdown">
+                            <button class="btn btn-light border dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-person-circle me-1"></i>{{ Auth::user()->ho_ten }}
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="{{ route('tai_khoan.ho_so') }}">Thông tin cá nhân</a></li>
+                                <li><a class="dropdown-item" href="#">Đơn hàng của tôi</a></li>
+                                @if(Auth::user()->vai_tro === 'admin')
+                                    <li><a class="dropdown-item text-primary" href="#">Trang quản trị</a></li>
+                                @endif
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form action="{{ route('dang_xuat') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item text-danger">Đăng xuất</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @else
+                        <a href="{{ route('dang_nhap') }}" class="btn btn-primary">
+                            <i class="bi bi-box-arrow-in-right me-1"></i>Đăng nhập
+                        </a>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -53,6 +75,14 @@
 
     <!-- Nội dung chính -->
     <main class="flex-grow-1">
+        @if(session('thong_bao'))
+            <div class="container mt-3">
+                <div class="alert alert-success alert-dismissible fade show py-2" role="alert">
+                    {{ session('thong_bao') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            </div>
+        @endif
         @yield('noi_dung')
     </main>
 
