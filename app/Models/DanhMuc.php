@@ -13,6 +13,7 @@ class DanhMuc extends Model
         'ten_danh_muc',
         'duong_dan',
         'mo_ta',
+        'trang_thai',
     ];
 
     public function sanPham(): HasMany

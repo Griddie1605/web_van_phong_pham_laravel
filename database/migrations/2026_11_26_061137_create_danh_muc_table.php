@@ -13,6 +13,7 @@ return new class extends Migration
             $table->string('ten_danh_muc', 120);
             $table->string('duong_dan', 140)->unique();
             $table->text('mo_ta')->nullable();
+            $table->enum('trang_thai', ['hien', 'an'])->default('hien');
             $table->timestamps();
         });
     }

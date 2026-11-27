@@ -52,7 +52,7 @@
                                 <li><a class="dropdown-item" href="{{ route('tai_khoan.ho_so') }}">Thông tin cá nhân</a></li>
                                 <li><a class="dropdown-item" href="{{ route('don_hang.lich_su') }}">Đơn hàng của tôi</a></li>
                                 @if(Auth::user()->vai_tro === 'admin')
-                                    <li><a class="dropdown-item text-primary" href="#">Trang quản trị</a></li>
+                                    <li><a class="dropdown-item text-primary fw-semibold" href="{{ route('admin.dashboard') }}">Trang quản trị</a></li>
                                 @endif
                                 <li><hr class="dropdown-divider"></li>
                                 <li>

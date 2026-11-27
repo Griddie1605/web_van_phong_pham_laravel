@@ -19,6 +19,7 @@ class PhieuNhap extends Model
         'ghi_chu',
     ];
 
+
     protected $casts = [
         'ngay_nhap' => 'datetime',
         'tong_tien_nhap' => 'decimal:2',

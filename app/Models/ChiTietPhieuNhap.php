@@ -17,6 +17,7 @@ class ChiTietPhieuNhap extends Model
         'thanh_tien',
     ];
 
+
     protected $casts = [
         'gia_nhap' => 'decimal:2',
         'thanh_tien' => 'decimal:2',

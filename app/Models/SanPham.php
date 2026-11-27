@@ -22,6 +22,7 @@ class SanPham extends Model
         'trang_thai',
     ];
 
+
     protected $casts = [
         'gia_ban' => 'decimal:2',
         'so_luong_ton' => 'integer',

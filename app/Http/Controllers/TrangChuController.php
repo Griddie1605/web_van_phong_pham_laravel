@@ -11,7 +11,9 @@ class TrangChuController extends Controller
 {
     public function index(Request $request)
     {
-        $dsDanhMuc = DanhMuc::orderBy('ten_danh_muc')->get();
+        $dsDanhMuc = DanhMuc::where('trang_thai', 'hien')
+            ->orderBy('ten_danh_muc')
+            ->get();
 
         $dsMaGiamGia = MaGiamGia::where('trang_thai', 'kich_hoat')
             ->where(function ($q) {
@@ -24,7 +26,10 @@ class TrangChuController extends Controller
             ->get();
 
         $query = SanPham::with('danhMuc')
-            ->where('trang_thai', 'hien');
+            ->where('trang_thai', 'hien')
+            ->whereHas('danhMuc', function ($q) {
+                $q->where('trang_thai', 'hien');
+            });
 
         if ($request->filled('tu_khoa')) {
             $tuKhoa = trim($request->tu_khoa);
@@ -34,7 +39,8 @@ class TrangChuController extends Controller
         if ($request->filled('danh_muc')) {
             $slugDanhMuc = $request->danh_muc;
             $query->whereHas('danhMuc', function ($q) use ($slugDanhMuc) {
-                $q->where('duong_dan', $slugDanhMuc);
+                $q->where('duong_dan', $slugDanhMuc)
+                    ->where('trang_thai', 'hien');
             });
         }
 
@@ -72,11 +78,17 @@ class TrangChuController extends Controller
         $sanPham = SanPham::with('danhMuc')
             ->where('duong_dan', $duongDan)
             ->where('trang_thai', 'hien')
+            ->whereHas('danhMuc', function ($q) {
+                $q->where('trang_thai', 'hien');
+            })
             ->firstOrFail();
 
         $sanPhamLienQuan = SanPham::where('danh_muc_id', $sanPham->danh_muc_id)
             ->where('id', '!=', $sanPham->id)
             ->where('trang_thai', 'hien')
+            ->whereHas('danhMuc', function ($q) {
+                $q->where('trang_thai', 'hien');
+            })
             ->take(4)
             ->get();
 
