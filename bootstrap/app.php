@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'admin' => KiemTraAdmin::class,
         ]);
+        $middleware->redirectGuestsTo('/dang-nhap');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

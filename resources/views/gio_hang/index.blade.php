@@ -163,8 +163,7 @@
                         </div>
 
                         <div class="d-grid">
-                            <a href="#" class="btn btn-primary">Tiến hành đặt hàng</a>
-                        </div>
+                            <a href="{{ route('dat_hang.form') }}" class="btn btn-primary">Tiến hành đặt hàng</a>
                     </div>
                 </div>
             </div>

@@ -17,7 +17,7 @@ class NhatKyKho extends Model
         'ton_sau_bien_dong',
         'ghi_chu',
     ];
-
+    
     public function sanPham(): BelongsTo
     {
         return $this->belongsTo(SanPham::class, 'san_pham_id');
