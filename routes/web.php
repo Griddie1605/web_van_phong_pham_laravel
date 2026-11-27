@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GioHangController;
 use App\Http\Controllers\TaiKhoanController;
 use App\Http\Controllers\TrangChuController;
 use Illuminate\Support\Facades\Route;
@@ -19,3 +20,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/tai-khoan', [TaiKhoanController::class, 'hoSo'])->name('tai_khoan.ho_so');
     Route::put('/tai-khoan', [TaiKhoanController::class, 'capNhatHoSo'])->name('tai_khoan.cap_nhat');
 });
+
+// Giỏ hàng & Mã giảm giá
+Route::get('/gio-hang', [GioHangController::class, 'index'])->name('gio_hang.index');
+Route::post('/gio-hang/them', [GioHangController::class, 'them'])->name('gio_hang.them');
+Route::post('/gio-hang/cap-nhat', [GioHangController::class, 'capNhat'])->name('gio_hang.cap_nhat');
+Route::delete('/gio-hang/xoa/{id}', [GioHangController::class, 'xoa'])->name('gio_hang.xoa');
+Route::delete('/gio-hang/xoa-tat-ca', [GioHangController::class, 'xoaTatCa'])->name('gio_hang.xoa_tat_ca');
+Route::post('/gio-hang/ap-dung-ma', [GioHangController::class, 'apDungMa'])->name('gio_hang.ap_dung_ma');
+Route::delete('/gio-hang/go-ma', [GioHangController::class, 'goMa'])->name('gio_hang.go_ma');

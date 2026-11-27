@@ -66,3 +66,14 @@ body {
 .cam-ket-3 { border-bottom-color: #ffc107 !important; }
 .cam-ket-4 { border-bottom-color: #dc3545 !important; }
 
+.anh-nho-gio {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.o-so-luong-gio {
+    width: 68px;
+}

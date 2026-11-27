@@ -36,12 +36,12 @@
                 </ul>
 
                 <div class="d-flex align-items-center gap-2">
-                    <a href="#" class="btn btn-outline-primary position-relative">
-                        <i class="bi bi-cart3"></i> Giỏ hàng
-                        <span id="so-luong-gio-hang" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            {{ count(session('gio_hang', [])) }}
-                        </span>
-                    </a>
+                    <a href="{{ route('gio_hang.index') }}" class="btn btn-outline-primary position-relative">
+                    <i class="bi bi-cart3"></i> Giỏ hàng
+                    <span id="so-luong-gio-hang" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        {{ array_sum(array_column(session('gio_hang', []), 'so_luong')) }}
+                    </span>
+                </a>
 
                     @auth
                         <div class="dropdown">
