@@ -23,6 +23,11 @@
                     <a class="nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">Dashboard</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.don_hang.*') ? 'active fw-semibold' : '' }}"
+                    href="{{ route('admin.don_hang.index') }}">Đơn hàng</a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.danh_muc.*') ? 'active' : '' }}" href="{{ route('admin.danh_muc.index') }}">Danh mục</a>
                 </li>
                 <li class="nav-item">

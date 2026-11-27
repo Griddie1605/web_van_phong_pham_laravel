@@ -80,12 +80,23 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $nhanLoaiBienDong = [
+                            'nhap_kho' => ['Nhập kho', 'bg-success'],
+                            'xuat_ban' => ['Xuất bán', 'bg-primary'],
+                            'hoan_tra' => ['Hoàn trả', 'bg-info text-dark'],
+                            'dieu_chinh' => ['Điều chỉnh', 'bg-warning text-dark'],
+                        ];
+                    @endphp
                     @forelse($dsNhatKy as $nk)
+                        @php
+                            [$chuBienDong, $mauBienDong] = $nhanLoaiBienDong[$nk->loai_bien_dong] ?? [$nk->loai_bien_dong, 'bg-secondary'];
+                        @endphp
                         <tr>
                             <td class="small text-muted">{{ $nk->created_at?->format('d/m/Y H:i') }}</td>
                             <td class="fw-semibold">{{ $nk->sanPham->ten_san_pham ?? ('SP #' . $nk->san_pham_id) }}</td>
                             <td>
-                                <span class="badge bg-secondary-subtle text-dark">{{ $nk->loai_bien_dong }}</span>
+                                <span class="badge {{ $mauBienDong }}">{{ $chuBienDong }}</span>
                             </td>
                             <td class="text-end fw-bold {{ $nk->so_luong_thay_doi >= 0 ? 'text-success' : 'text-danger' }}">
                                 {{ $nk->so_luong_thay_doi >= 0 ? '+' . $nk->so_luong_thay_doi : $nk->so_luong_thay_doi }}

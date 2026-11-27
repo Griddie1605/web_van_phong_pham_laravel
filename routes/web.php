@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DanhMucController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DonHangController;
 use App\Http\Controllers\Admin\KhoHangController;
 use App\Http\Controllers\Admin\SanPhamController;
 use App\Http\Controllers\DatHangController;
@@ -46,6 +47,11 @@ Route::middleware('auth')->group(function () {
 // Quản trị (Admin)
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Đơn hàng
+    Route::get('/don-hang', [DonHangController::class, 'index'])->name('don_hang.index');
+    Route::get('/don-hang/{id}', [DonHangController::class, 'show'])->name('don_hang.show');
+    Route::post('/don-hang/{id}/trang-thai', [DonHangController::class, 'capNhatTrangThai'])->name('don_hang.cap_nhat_trang_thai');
 
     // Danh mục
     Route::get('/danh-muc', [DanhMucController::class, 'index'])->name('danh_muc.index');
