@@ -1,0 +1,68 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.anh-banner {
+    height: 380px;
+    object-fit: cover;
+}
+
+.anh-san-pham {
+    height: 210px;
+    object-fit: cover;
+}
+
+.card-san-pham {
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-san-pham:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.12) !important;
+}
+
+.the-voucher {
+    border-left: 4px solid #dc3545 !important;
+}
+
+.link-footer:hover {
+    color: #ffffff !important;
+}
+
+.link-mang-xa-hoi {
+    letter-spacing: -0.5px;
+    transition: color 0.2s, transform 0.2s;
+    display: inline-block;
+}
+
+.link-mang-xa-hoi:hover {
+    color: #0d6efd !important;
+    transform: translateX(-4px);
+}
+
+
+.cam-ket-card {
+    border-radius: 14px;
+    border-bottom: 4px solid transparent !important;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cam-ket-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1) !important;
+}
+
+.cam-ket-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cam-ket-1 { border-bottom-color: #0d6efd !important; }
+.cam-ket-2 { border-bottom-color: #198754 !important; }
+.cam-ket-3 { border-bottom-color: #ffc107 !important; }
+.cam-ket-4 { border-bottom-color: #dc3545 !important; }
+
