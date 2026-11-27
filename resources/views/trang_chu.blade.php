@@ -36,38 +36,44 @@
         </button>
     </div>
 
+    <br>
+
     <!-- 2. Dải Mã giảm giá nổi bật -->
-    @if($dsMaGiamGia->count() > 0)
-        <section id="khu-vuc-ma-giam-gia" class="mt-4">
-            <div class="d-flex align-items-center mb-3">
-                <h5 class="fw-bold mb-0"><i class="bi bi-ticket-perforated text-danger me-2"></i>Mã giảm giá dành cho bạn</h5>
-            </div>
-            <div class="row g-3">
-                @foreach($dsMaGiamGia as $ma)
-                    <div class="col-md-4">
-                        <div class="card border-0 shadow-sm h-100 the-voucher">
-                            <div class="card-body d-flex justify-content-between align-items-center gap-2">
-                                <div>
-                                    <span class="badge bg-danger-subtle text-danger border border-danger-subtle mb-1">
-                                        {{ $ma->ma_code }}
-                                    </span>
-                                    <h6 class="fw-bold mb-1">{{ $ma->ten_chuong_trinh }}</h6>
-                                    <small class="text-muted d-block">
-                                        Đơn tối thiểu: {{ number_format($ma->don_hang_toi_thieu, 0, ',', '.') }}đ
-                                    </small>
-                                </div>
-                                <button type="button"
-                                        class="btn btn-outline-danger btn-sm text-nowrap btn-sao-chep-ma"
-                                        data-ma="{{ $ma->ma_code }}">
-                                    Sao chép
-                                </button>
+    @if($dsMaGiamGia->isNotEmpty())
+    <section id="khu-vuc-ma-giam-gia" class="mb-4">
+        <h5 class="fw-bold mb-3">Mã giảm giá dành cho bạn</h5>
+        <div class="row g-3">
+            @foreach($dsMaGiamGia as $ma)
+                <div class="col-md-4">
+                    <div class="card border-0 border-start border-4 border-danger shadow-sm h-100">
+                        <div class="card-body d-flex justify-content-between align-items-center gap-2">
+                            <div>
+                                <span class="badge bg-danger-subtle text-danger fw-bold mb-1">{{ $ma->ma_code }}</span>
+                                <div class="fw-bold">{{ $ma->ten_chuong_trinh }}</div>
+                                <small class="text-muted">
+                                    @if($ma->loai_giam === 'phan_tram')
+                                        Giảm {{ rtrim(rtrim(number_format($ma->gia_tri_giam, 2, '.', ''), '0'), '.') }}%
+                                        @if($ma->giam_toi_da)
+                                            (tối đa {{ number_format($ma->giam_toi_da, 0, ',', '.') }}đ)
+                                        @endif
+                                    @else
+                                        Giảm {{ number_format($ma->gia_tri_giam, 0, ',', '.') }}đ
+                                    @endif
+                                    · Đơn tối thiểu: {{ number_format($ma->don_hang_toi_thieu, 0, ',', '.') }}đ
+                                </small>
                             </div>
+                            <button type="button" class="btn btn-outline-danger btn-sm text-nowrap"
+                                    onclick="navigator.clipboard?.writeText('{{ $ma->ma_code }}')">
+                                Sao chép
+                            </button>
                         </div>
                     </div>
-                @endforeach
-            </div>
-        </section>
+                </div>
+            @endforeach
+        </div>
+    </section>
     @endif
+
 
     <!-- 3. Section Sản phẩm + Thanh tìm kiếm & Bộ lọc -->
     <section id="khu-vuc-san-pham" class="mt-5">

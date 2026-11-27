@@ -26,7 +26,6 @@
                     <a class="nav-link {{ request()->routeIs('admin.don_hang.*') ? 'active fw-semibold' : '' }}"
                     href="{{ route('admin.don_hang.index') }}">Đơn hàng</a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.danh_muc.*') ? 'active' : '' }}" href="{{ route('admin.danh_muc.index') }}">Danh mục</a>
                 </li>
@@ -39,6 +38,11 @@
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('admin.kho.nhat_ky') ? 'active' : '' }}" href="{{ route('admin.kho.nhat_ky') }}">Nhật ký kho</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('admin.ma_giam_gia.*') ? 'active fw-semibold' : '' }}"
+                    href="{{ route('admin.ma_giam_gia.index') }}">Mã giảm giá</a>
+                </li>
+
             </ul>
             <div class="d-flex align-items-center gap-2">
                 <a href="{{ route('trang_chu') }}" class="btn btn-outline-light btn-sm">Xem cửa hàng</a>

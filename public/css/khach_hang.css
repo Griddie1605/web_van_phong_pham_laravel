@@ -77,3 +77,13 @@ body {
 .o-so-luong-gio {
     width: 68px;
 }
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+#khu-vuc-ma-giam-gia,
+#khu-vuc-san-pham {
+    scroll-margin-top: 80px;
+}

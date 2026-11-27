@@ -15,14 +15,20 @@ class TrangChuController extends Controller
             ->orderBy('ten_danh_muc')
             ->get();
 
+        $now = now();
+
         $dsMaGiamGia = MaGiamGia::where('trang_thai', 'kich_hoat')
-            ->where(function ($q) {
-                $q->whereNull('ngay_bat_dau')->orWhere('ngay_bat_dau', '<=', now());
+            ->where(function ($q) use ($now) {
+                $q->whereNull('ngay_bat_dau')->orWhere('ngay_bat_dau', '<=', $now);
+            })
+            ->where(function ($q) use ($now) {
+                $q->whereNull('ngay_ket_thuc')->orWhere('ngay_ket_thuc', '>=', $now);
             })
             ->where(function ($q) {
-                $q->whereNull('ngay_ket_thuc')->orWhere('ngay_ket_thuc', '>=', now());
+                $q->whereNull('so_luong_toi_da')->orWhereColumn('da_su_dung', '<', 'so_luong_toi_da');
             })
-            ->take(3)
+            ->orderByDesc('id')
+            ->take(6)
             ->get();
 
         $query = SanPham::with('danhMuc')

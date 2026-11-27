@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\DanhMucController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DonHangController;
 use App\Http\Controllers\Admin\KhoHangController;
+use App\Http\Controllers\Admin\MaGiamGiaController;
 use App\Http\Controllers\Admin\SanPhamController;
 use App\Http\Controllers\DatHangController;
 use App\Http\Controllers\GioHangController;
@@ -52,6 +53,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::get('/don-hang', [DonHangController::class, 'index'])->name('don_hang.index');
     Route::get('/don-hang/{id}', [DonHangController::class, 'show'])->name('don_hang.show');
     Route::post('/don-hang/{id}/trang-thai', [DonHangController::class, 'capNhatTrangThai'])->name('don_hang.cap_nhat_trang_thai');
+
+    // Mã giảm giá
+    Route::get('/ma-giam-gia', [MaGiamGiaController::class, 'index'])->name('ma_giam_gia.index');
+    Route::post('/ma-giam-gia', [MaGiamGiaController::class, 'store'])->name('ma_giam_gia.store');
+    Route::put('/ma-giam-gia/{id}', [MaGiamGiaController::class, 'update'])->name('ma_giam_gia.update');
+    Route::post('/ma-giam-gia/{id}/doi-trang-thai', [MaGiamGiaController::class, 'doiTrangThai'])->name('ma_giam_gia.doi_trang_thai');
 
     // Danh mục
     Route::get('/danh-muc', [DanhMucController::class, 'index'])->name('danh_muc.index');
